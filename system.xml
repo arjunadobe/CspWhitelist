@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Lotus. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="csp" translate="label" sortOrder="305" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="lotus_csp_whitelist" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Lotus CSP Whitelist Settings</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Nonce Generation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Enable automatic nonce generation and injection for inline scripts. When enabled, nonces will be added to all script tags and included in CSP headers.]]></comment>
+                </field>
+                <field id="exclude_rest_api" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Exclude REST API</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Exclude REST API endpoints from nonce generation (recommended).]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="exclude_admin_token" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Exclude Admin Token Creation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Exclude admin token creation endpoints from nonce generation (recommended).]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="block_third_party_domains" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Block Third-Party Domains from CSP Whitelist</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Block specific third-party domains from being added to CSP whitelist (PayPal, Cardinal Commerce, etc.).]]></comment>
+                </field>
+                <field id="blocked_domains" translate="label comment" type="textarea" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Blocked Domain Patterns</label>
+                    <comment><![CDATA[One pattern per line. Use * as wildcard. Example: *.paypal.com<br/>These domains will be removed from CSP whitelists.]]></comment>
+                    <depends>
+                        <field id="block_third_party_domains">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
+
