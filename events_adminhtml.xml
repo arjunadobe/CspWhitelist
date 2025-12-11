@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Lotus. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="http_response_send_before">
+        <observer name="lotus_add_nonce_to_script_tags" instance="Lotus\CspWhitelist\Observer\AddNonceToScriptTags"/>
+    </event>
+</config>
+
